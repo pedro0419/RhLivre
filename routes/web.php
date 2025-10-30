@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PositionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +27,11 @@ Route::post('/employee', [EmployeeController::class, 'store'])->name('employee.s
 Route::get('/employee/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/{id}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+
+Route::get('/position', [PositionController::class, 'index'])->name('position.index');
+Route::get('/position/create', [PositionController::class, 'create'])->name('position.create');
+Route::post('/position', [PositionController::class, 'store'])->name('position.store');
+Route::get('/position/{id}/edit', [PositionController::class, 'edit'])->name('position.edit');
+Route::put('/position/{id}', [PositionController::class, 'update'])->name('position.update');
+Route::delete('/position/{id}', [PositionController::class, 'destroy'])->name('position.delete');
+

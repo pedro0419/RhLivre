@@ -29,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-         employee::create([
+        employee::create([
         'nome' => $request->nome,
         'cpf' => $request->cpf,
         'telefone' => $request->telefone,
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $employee = employee::findOrFail($id);
         return view('employee.edit', compact('employee'));
