@@ -15,19 +15,26 @@
         </div>
 
         <div>
-            <label for="cpf">TELEFONE:</label>
+            <label for="telefone">TELEFONE:</label>
         <input type="text" name="telefone"  value = "{{ old('telefone', $employee->telefone) }}"/><br />
         </div>
 
         <div>
-            <label for="cpf">DATA DE NASCIMENTO:</label>
-        <input type="text" name="data_nascimento"  value = "{{ old('data_nascimento', $employee->data_nascimento) }}"/><br />
+            <label for="data_nascimento">DATA DE NASCIMENTO:</label>
+        <input type="date" name="data_nascimento"  value = "{{ old('data_nascimento', $employee->data_nascimento) }}"/><br />
         </div>
 
         <div>
-            <label for="cpf">SALARIO:</label>
+            <label for="salario">SALARIO:</label>
         <input type="text" name="salario"  value = "{{ old('salario', $employee->salario) }}"/><br />
         </div>
 
-        <button type="submit">Salvar</button>
+        <div>
+            <label for="nome_cargo">Cargo:</label>
+            <select name="cargo_id" id="nome_cargo">
+                @foreach ($positions as $position)
+                    <option value="{{ $position->id }}">{{ $position->nome_cargo }}</option>
+                @endforeach
+        </div>
+        <input type="submit" value="Salvar">
     </form>

@@ -12,10 +12,18 @@
         <input type="text" name="telefone" id="telefone" /><br />
 
         <label for="data_nascimento">DATA DE NASCIMENTO:</label>
-        <input type="text" name="data_nascimento" id="data_nascimento" /><br />
+        <input type="date" name="data_nascimento" id="data_nascimento" /><br />
 
         <label for="salario">SALARIO:</label>
         <input type="text" name="salario" id="salario" /><br />
+
+        <label for="nome_cargo">Cargo:</label>
+        <select name="cargo_id" id="nome_cargo">
+            @foreach ($positions as $position)
+                <option value="{{ $position->id }}">{{ $position->nome_cargo }}</option>
+            @endforeach
+        </select><br />
+            
 
         <button type="submit">Enviar</button>
     </form>

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
-            $table->string("cpf");
-            $table->string("telefone");
-            $table->string("data_nascimento");
-            $table->string("salario");
+            $table->string('nome');
+            $table->string('cpf');
+            $table->string('telefone');
+            $table->string('data_nascimento');
+            $table->string('salario');
             $table->foreignId('cargo_id')->constrained('positions')->onDelete('cascade');
             $table->timestamps();
         });

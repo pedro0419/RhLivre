@@ -10,6 +10,7 @@
                 <th>TELEFONE</th>
                 <th>DATA DE NASCIMENTO</th>
                 <th>SALARIO</th>
+                <th>Cargo</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -22,7 +23,14 @@
                         <td>{{ $employee->cpf }}</td>
                         <td>{{ $employee->telefone }}</td>
                         <td>{{ $employee->data_nascimento }}</td>
-                        <td>{{ $employee->salario }}</td>
+                        <td>{{ $employee->salario }}R$</td>
+                        <div>
+                            @foreach ($positions as $position)
+                                @if ($employee->cargo_id == $position->id)
+                                    <td>{{ $position->nome_cargo }}</td>
+                                @endif
+                            @endforeach
+                        </div>
                         <td>
                             <a href="{{ route('employee.edit', $employee->id)}}"><button>Editar</button></a>
                             <form action="{{ route('employee.delete', $employee->id) }}" method="post">

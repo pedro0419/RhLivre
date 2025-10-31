@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Models\employee;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = employee::all();  
-        return view('employee.index', compact('employees'));
+        $employees = employee::all();
+        $positions = Position::all();
+        return view('employee.index', compact('employees') , compact('positions'));
     }
 
     /**
@@ -21,7 +23,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       return view('employee.create');
+        $positions = Position::all();
+        return view('employee.create', compact('positions'));
     }
 
     /**
@@ -34,7 +37,8 @@ class EmployeeController extends Controller
         'cpf' => $request->cpf,
         'telefone' => $request->telefone,
         'data_nascimento' => $request->data_nascimento,
-        'salario' => $request->salario,
+        'salario' => str_replace(',', '.', $request->salario),
+        'cargo_id' => $request->cargo_id,
         ]);
 
         return redirect()->route('employee.index')->with('success', 'Post criado com sucesso!');
@@ -55,7 +59,8 @@ class EmployeeController extends Controller
     public function edit(string $id)
     {
         $employee = employee::findOrFail($id);
-        return view('employee.edit', compact('employee'));
+        $positions = Position::all();
+        return view('employee.edit', compact('employee') , compact('positions'));
     }
 
     /**
