@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\DepartmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,3 +36,9 @@ Route::get('/position/{id}/edit', [PositionController::class, 'edit'])->name('po
 Route::put('/position/{id}', [PositionController::class, 'update'])->name('position.update');
 Route::delete('/position/{id}', [PositionController::class, 'destroy'])->name('position.delete');
 
+Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
+Route::get('/department/create', [DepartmentController::class, 'create'])->name('department.create');
+Route::post('/department', [DepartmentController::class, 'store'])->name('department.store'); 
+Route::get('/department/{id}/edit', [DepartmentController::class, 'edit'])->name('department.edit');
+Route::put('/department/{id}', [DepartmentController::class, 'update'])->name('department.update');
+Route::delete('/department/{id}', [DepartmentController::class, 'destroy'])->name('department.delete');
