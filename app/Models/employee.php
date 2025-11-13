@@ -12,6 +12,7 @@ class employee extends Model
         'telefone',
         'data_nascimento',
         'salario',
-        'cargo_id' 
+        'cargo_id',
+        'departamento_id' 
     ];
 }

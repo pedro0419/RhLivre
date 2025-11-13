@@ -14,13 +14,14 @@ class EmployeeController extends Controller
     {
         $employees = employee::all();
         $positions = Position::all();
-        return view('employee.index', compact('employees') , compact('positions'));
+        $departments = Department::all();
+        return view('employee.index', compact('employees', 'positions', 'departments'));
     }
 
     public function create()
-    {
+    {   $departments = Department::all();
         $positions = Position::all();
-        return view('employee.create', compact('positions'));
+        return view('employee.create', compact('positions' , 'departments'));
     }
 
     public function store(Request $request)
@@ -32,6 +33,7 @@ class EmployeeController extends Controller
         'data_nascimento' => $request->data_nascimento,
         'salario' => str_replace(',', '.', $request->salario),
         'cargo_id' => $request->cargo_id,
+        'departamento_id' => $request->departamento_id,
         ]);
 
         return redirect()->route('employee.index')->with('success', 'Post criado com sucesso!');
@@ -47,7 +49,8 @@ class EmployeeController extends Controller
     {
         $employee = employee::findOrFail($id);
         $positions = Position::all();
-        return view('employee.edit', compact('employee') , compact('positions'));
+        $departments = Department::all();
+        return view('employee.edit', compact('employee' , 'positions' , 'departments'));
     }
 
     public function update(Request $request, string $id)
@@ -60,6 +63,7 @@ class EmployeeController extends Controller
             'data_nascimento' => $request->data_nascimento,
             'salario' => $request->salario,
             'cargo_id' => $request->cargo_id,
+            'departamento_id' => $request->departamento_id,
         ]);
         return redirect()->route('employee.index') ->with('success', 'Produto atualizado com sucesso!');    
     }

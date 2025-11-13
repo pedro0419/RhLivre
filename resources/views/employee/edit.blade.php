@@ -35,6 +35,16 @@
                 @foreach ($positions as $position)
                     <option value="{{ $position->id }}">{{ $position->nome_cargo }}</option>
                 @endforeach
+            </select>
+        </div>
+
+        <div>
+            <label for="nome_departamento">Departamento :</label> 
+            <select name="departamento_id" id="">
+                @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->nome_departamento }}</option>
+                @endforeach
+            </select>
         </div>
         <input type="submit" value="Salvar">
     </form>

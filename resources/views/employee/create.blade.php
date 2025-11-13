@@ -22,8 +22,16 @@
             @foreach ($positions as $position)
                 <option value="{{ $position->id }}">{{ $position->nome_cargo }}</option>
             @endforeach
-        </select><br />
-            
+        </select>
+        <br>
+
+        <label for="nome_departamento">Departamento:</label>
+        <select name="departamento_id" id="nome_departamento">
+            @foreach ($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->nome_departamento }}</option>
+            @endforeach
+        </select>
+        <br>
 
         <button type="submit">Enviar</button>
     </form>

@@ -11,6 +11,7 @@
                 <th>DATA DE NASCIMENTO</th>
                 <th>SALARIO</th>
                 <th>Cargo</th>
+                <th>Departamento</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -28,6 +29,13 @@
                             @foreach ($positions as $position)
                                 @if ($employee->cargo_id == $position->id)
                                     <td>{{ $position->nome_cargo }}</td>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div>
+                             @foreach ($departments as $department)
+                                @if ($employee->departamento_id == $department->id)
+                                    <td>{{ $department->nome_departamento }}</td>
                                 @endif
                             @endforeach
                         </div>

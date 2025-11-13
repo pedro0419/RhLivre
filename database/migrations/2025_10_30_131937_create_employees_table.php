@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('data_nascimento');
             $table->string('salario');
             $table->foreignId('cargo_id')->constrained('positions')->onDelete('cascade');
+            $table->foreignId('departamento_id')->constrained('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }
