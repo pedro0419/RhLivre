@@ -19,13 +19,24 @@ class EmployeeController extends Controller
     }
 
     public function create()
-    {   $departments = Department::all();
+    {  
+         $departments = Department::all();
         $positions = Position::all();
         return view('employee.create', compact('positions' , 'departments'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+        'nome' => 'required|string|max:255',
+        'cpf' => 'required|string|size:11|unique:employees,cpf',
+        'telefone' => 'required|string|max:20',
+        'data_nascimento' => 'required|date|before:today',
+        'salario' => 'required|regex:/^\d+([,.]\d{1,2})?$/',
+        'cargo_id' => 'required|exists:positions,id',
+        'departamento_id' => 'required|exists:departments,id',
+        ]);
+
         employee::create([
         'nome' => $request->nome,
         'cpf' => $request->cpf,
@@ -55,6 +66,29 @@ class EmployeeController extends Controller
 
     public function update(Request $request, string $id)
     {
+$employee = Employee::findOrFail($id);
+
+$request->validate([
+    'nome' => 'required|string|max:255',
+    'cpf' => 'required|string|size:11|unique:employees,cpf,' . $employee->id,
+    'telefone' => 'required|string|max:20',
+    'data_nascimento' => 'required|date|before:today',
+    'salario' => 'required|regex:/^\d+([,.]\d{1,2})?$/',
+    'cargo_id' => 'required|exists:positions,id', 
+    'departamento_id' => 'required|exists:departments,id',
+]);
+
+$employee->update([
+    'nome' => $request->nome,
+    'cpf' => $request->cpf,
+    'telefone' => $request->telefone,
+    'data_nascimento' => $request->data_nascimento,
+    'salario' => str_replace(',', '.', $request->salario),
+    'cargo_id' => $request->cargo_id,
+    'departamento_id' => $request->departamento_id,
+]);
+
+
         $employee = employee::findOrFail($id);
         $employee->update([
             'nome' => $request->nome,

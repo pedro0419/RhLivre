@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LacationsLeavesController;
+use App\Http\Controllers\PerformanceReviewsController;
 
 
 Route::get('/', function () {
@@ -51,5 +52,12 @@ Route::post('/lacations-leaves', [LacationsLeavesController::class, 'store'])->n
 Route::get('/lacations-leaves/{id}/edit', [LacationsLeavesController::class, 'edit'])->name('lacations-leaves.edit');  
 Route::put('/lacations-leaves/{id}', [LacationsLeavesController::class, 'update'])->name('lacations-leaves.update');
 Route::delete('/lacations-leaves/{id}', [LacationsLeavesController::class, 'destroy'])->name('lacations-leaves.delete');
+
+Route::get('/Performance-Reviews', [PerformanceReviewsController::class, 'index'])->name('Performance-Reviews.index');
+Route::get('/Performance-Reviews/create', [PerformanceReviewsController::class, 'create'])->name('Performance-Reviews.create');
+Route::post('/Performance-Reviews', [PerformanceReviewsController::class, 'store'])->name('Performance-Reviews.store');
+Route::get('/Performance-Reviews/{id}/edit', [PerformanceReviewsController::class, 'edit'])->name('Performance-Reviews.edit');  
+Route::put('/Performance-Reviews/{id}', [PerformanceReviewsController::class, 'update'])->name('Performance-Reviews.update');
+Route::delete('/Performance-Reviews/{id}', [PerformanceReviewsController::class, 'destroy'])->name('Performance-Reviews.delete');
 
 

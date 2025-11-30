@@ -1,4 +1,4 @@
-<h1>cargos</h1>
+<h1>Departamentos</h1>
 
     <table border="1" cellpadding="10">
         <thead>

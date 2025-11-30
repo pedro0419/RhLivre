@@ -1,4 +1,4 @@
-<h1>cargos</h1>
+<h1>Cargos</h1>
 
     <table border="1" cellpadding="10">
         <thead>
@@ -14,7 +14,7 @@
                     <tr>
                         <td>{{ $position->id }}</td>
                         <td>{{ $position->nome_cargo }}</td>
-                        <td>{{ $position->salario_base }}</td>
+                        <td>{{ $position->salario_base }}R$</td>
                         <td>
                             <a href="{{ route('position.edit', $position->id)}}"><button>Editar</button></a>
                             <form action="{{ route('position.delete', $position->id)}}" method="post">
