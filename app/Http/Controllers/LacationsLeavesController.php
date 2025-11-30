@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\employee;
 use App\Models\LacationsLeaves;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class LacationsLeavesController extends Controller
      */
     public function index()
     {
-        //
+        $employees = employee::all();
+        $lacationsLeaves = LacationsLeaves::all();
+        return view('lacationsLeaves.index', compact('employees', 'lacationsLeaves'));
     }
 
     /**
@@ -20,7 +23,8 @@ class LacationsLeavesController extends Controller
      */
     public function create()
     {
-        //
+        $employees = employee::all();
+        return view('lacationsLeaves.create', compact('employees'));
     }
 
     /**
@@ -28,7 +32,16 @@ class LacationsLeavesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        LacationsLeaves::create([
+        'tipo_ferias' => $request->tipo_ferias,
+        'data_inicio' => $request->data_inicio,
+        'data_fim' => $request->data_fim,
+        'observacoes' => $request->observacoes,
+        'employee_id' => $request->employee_id,
+        ]);
+        return redirect()->route('lacations-leaves.index')->with('success', 'Post criado com sucesso!');
+        
     }
 
     /**
@@ -36,30 +49,45 @@ class LacationsLeavesController extends Controller
      */
     public function show(LacationsLeaves $lacationsLeaves)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LacationsLeaves $lacationsLeaves)
+    public function edit(string $id)
     {
-        //
+        $lacationsLeave = LacationsLeaves::findOrFail($id);
+        $employees = employee::all();
+        return view('lacationsLeaves.edit', compact('employees' , 'lacationsLeave'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LacationsLeaves $lacationsLeaves)
+    public function update(Request $request, string $id)
     {
-        //
+        $lacationsLeaves = LacationsLeaves::findOrFail($id);
+        $lacationsLeaves->update([
+            'tipo_ferias'=> $request->tipo_ferias,
+            'data_inicio' => $request->data_inicio,
+            'data_fim' => $request->data_fim,
+            'observacoes' => $request->observacoes,
+            'employee_id' => $request->employee_id,
+        ]);
+
+        return redirect()->route('lacations-leaves.index') ->with('success', 'Produto atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LacationsLeaves $lacationsLeaves)
+    public function destroy(string $id)
     {
-        //
+        $lacationsLeaves = LacationsLeaves::findOrFail($id);
+
+        $lacationsLeaves->delete();
+
+        return redirect()->route('lacations-leaves.index')->with('success', 'Produto excluido com sucesso!');
     }
 }

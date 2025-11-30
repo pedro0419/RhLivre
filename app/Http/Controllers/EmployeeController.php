@@ -74,6 +74,6 @@ class EmployeeController extends Controller
 
         $employee->delete();
 
-         return redirect()->route('employee.index')->with('success', 'Produto excluido com sucesso!');
+        return redirect()->route('employee.index')->with('success', 'Produto excluido com sucesso!');
     }
 }

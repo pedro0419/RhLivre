@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\LacationsLeavesController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,3 +44,12 @@ Route::post('/department', [DepartmentController::class, 'store'])->name('depart
 Route::get('/department/{id}/edit', [DepartmentController::class, 'edit'])->name('department.edit');
 Route::put('/department/{id}', [DepartmentController::class, 'update'])->name('department.update');
 Route::delete('/department/{id}', [DepartmentController::class, 'destroy'])->name('department.delete');
+
+Route::get('/lacations-leaves', [LacationsLeavesController::class, 'index'])->name('lacations-leaves.index');
+Route::get('/lacations-leaves/create', [LacationsLeavesController::class, 'create'])->name('lacations-leaves.create');
+Route::post('/lacations-leaves', [LacationsLeavesController::class, 'store'])->name('lacations-leaves.store');
+Route::get('/lacations-leaves/{id}/edit', [LacationsLeavesController::class, 'edit'])->name('lacations-leaves.edit');  
+Route::put('/lacations-leaves/{id}', [LacationsLeavesController::class, 'update'])->name('lacations-leaves.update');
+Route::delete('/lacations-leaves/{id}', [LacationsLeavesController::class, 'destroy'])->name('lacations-leaves.delete');
+
+
