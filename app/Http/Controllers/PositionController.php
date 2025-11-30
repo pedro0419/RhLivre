@@ -29,6 +29,11 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome_cargo' => 'required|string|max:255',
+            'salario_base' => 'required|numeric|min:0',
+        ]);
+
         Position::create([
         'nome_cargo' => $request->nome_cargo,
         'salario_base' => $request->salario_base,
@@ -59,7 +64,12 @@ class PositionController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+    {   
+        $request->validate([
+            'nome_cargo' => 'required|string|max:255',
+            'salario_base' => 'required|numeric|min:0',
+        ]);
+
         $position = Position::findOrFail($id);
         $position->update([
             'nome_cargo' => $request->nome_cargo,

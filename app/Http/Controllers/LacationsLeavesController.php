@@ -33,6 +33,14 @@ class LacationsLeavesController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+        'tipo_ferias' => 'required|string|max:255',
+        'data_inicio' => 'required|date',
+        'data_fim' => 'required|date|after_or_equal:data_inicio',
+        'observacoes' => 'nullable|string|max:255',
+        'employee_id' => 'required|exists:employees,id',
+        ]);
+
         LacationsLeaves::create([
         'tipo_ferias' => $request->tipo_ferias,
         'data_inicio' => $request->data_inicio,
@@ -40,6 +48,7 @@ class LacationsLeavesController extends Controller
         'observacoes' => $request->observacoes,
         'employee_id' => $request->employee_id,
         ]);
+
         return redirect()->route('lacations-leaves.index')->with('success', 'Post criado com sucesso!');
         
     }
@@ -67,6 +76,14 @@ class LacationsLeavesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'tipo_ferias' => 'required|string|max:255',
+            'data_inicio' => 'required|date',
+            'data_fim' => 'required|date|after_or_equal:data_inicio',
+            'observacoes' => 'nullable|string',
+            'employee_id' => 'required|exists:employees,id',
+        ]);
+
         $lacationsLeaves = LacationsLeaves::findOrFail($id);
         $lacationsLeaves->update([
             'tipo_ferias'=> $request->tipo_ferias,

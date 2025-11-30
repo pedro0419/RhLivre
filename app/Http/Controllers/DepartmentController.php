@@ -26,7 +26,12 @@ class DepartmentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+            'nome_departamento' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:255',
+        ]);
+
         Department::create([
             'nome_departamento' => $request->nome_departamento,
             'descricao' => $request->descricao,
@@ -58,6 +63,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nome_departamento' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:255',
+        ]);
+
         $department = Department::findOrFail($id);
         $department->update([
             'nome_departamento' => $request->nome_departamento,

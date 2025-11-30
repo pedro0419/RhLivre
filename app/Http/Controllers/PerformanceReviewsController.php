@@ -32,6 +32,13 @@ class PerformanceReviewsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nota' => 'required|integer|min:0|max:10',
+            'data_avaliacao' => 'required|date',
+            'observacao' => 'nullable|string|max:255',
+            'employee_id' => 'required|exists:employees,id',
+        ]);
+
         PerformanceReviews::create([
         'nota' => $request->nota,
         'data_avaliacao' => $request->data_avaliacao,
@@ -65,6 +72,13 @@ class PerformanceReviewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nota' => 'required|integer|min:0|max:10',
+            'data_avaliacao' => 'required|date',
+            'observacao' => 'nullable|string|max:255',
+            'employee_id' => 'required|exists:employees,id',
+        ]);
+
         $PerformanceReviesws = PerformanceReviews::findOrFail($id);
         $PerformanceReviesws->update([
             'nota'=> $request->nota,
