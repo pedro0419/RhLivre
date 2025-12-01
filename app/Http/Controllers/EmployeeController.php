@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
 
+
     public function index()
     {
         $employees = employee::all();
@@ -18,12 +19,14 @@ class EmployeeController extends Controller
         return view('employee.index', compact('employees', 'positions', 'departments'));
     }
 
+
     public function create()
     {  
          $departments = Department::all();
         $positions = Position::all();
         return view('employee.create', compact('positions' , 'departments'));
     }
+
 
     public function store(Request $request)
     {
@@ -51,10 +54,12 @@ class EmployeeController extends Controller
 
     }
 
+
     public function show(employee $employee)
     {
         //
     }
+
 
     public function edit(string $id)
     {
@@ -64,30 +69,20 @@ class EmployeeController extends Controller
         return view('employee.edit', compact('employee' , 'positions' , 'departments'));
     }
 
+
     public function update(Request $request, string $id)
     {
-$employee = Employee::findOrFail($id);
+        $employee = Employee::findOrFail($id);
 
-$request->validate([
-    'nome' => 'required|string|max:255',
-    'cpf' => 'required|string|size:11|unique:employees,cpf,' . $employee->id,
-    'telefone' => 'required|string|max:20',
-    'data_nascimento' => 'required|date|before:today',
-    'salario' => 'required|regex:/^\d+([,.]\d{1,2})?$/',
-    'cargo_id' => 'required|exists:positions,id', 
-    'departamento_id' => 'required|exists:departments,id',
-]);
-
-$employee->update([
-    'nome' => $request->nome,
-    'cpf' => $request->cpf,
-    'telefone' => $request->telefone,
-    'data_nascimento' => $request->data_nascimento,
-    'salario' => str_replace(',', '.', $request->salario),
-    'cargo_id' => $request->cargo_id,
-    'departamento_id' => $request->departamento_id,
-]);
-
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string|size:11|unique:employees,cpf,' . $employee->id,
+            'telefone' => 'required|string|max:20',
+            'data_nascimento' => 'required|date|before:today',
+            'salario' => 'required|regex:/^\d+([,.]\d{1,2})?$/',
+            'cargo_id' => 'required|exists:positions,id', 
+            'departamento_id' => 'required|exists:departments,id',
+        ]);
 
         $employee = employee::findOrFail($id);
         $employee->update([
@@ -102,6 +97,7 @@ $employee->update([
         return redirect()->route('employee.index') ->with('success', 'Produto atualizado com sucesso!');    
     }
 
+    
     public function destroy(string $id)
     {
         $employee = employee::findOrFail($id);

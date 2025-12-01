@@ -1,3 +1,4 @@
+<x-app-layout>
 <h1>Editar avaliação</h1>
 
     <form action="{{ route('Performance-Reviews.update', $PerformanceReview->id) }}" method="POST">
@@ -6,12 +7,12 @@
 
         <div>
             <label for="nota">Nota</label>
-            <input type="text" name="nota" value="{{ old('nota', $PerformanceReview->nota) }}">
+            <input type="number" name="nota" value="{{ old('nota', $PerformanceReview->nota) }}">
         </div>
 
         <div>
             <label for="data_avaliacao">DATA DE INICIO:</label>
-            <input type="data" name="data_avaliacao" value="{{ old('data_avaliacao', $PerformanceReview->data_avaliacao) }}">
+            <input type="date" name="data_avaliacao" value="{{ old('data_avaliacao', $PerformanceReview->data_avaliacao) }}">
         </div>
 
         <div>
@@ -21,11 +22,16 @@
 
         <div>
             <label for="nome">FUNCIONARIO:</label>
-            <select name="id_employee" id="nome">
-                @foreach ($employees as $employee)
-                    <option value="{{ $employee->id }}">{{ $employee->nome }}</option>
-                @endforeach
-            </select>
+            <select name="id_employee" id="id_employee">
+            @foreach ($employees as $employee)
+                <option value="{{ $employee->id }}"
+                    {{ $employee->id == $PerformanceReview->id_employee ? 'selected' : '' }}>
+                    {{ $employee->nome }}
+                </option>
+            @endforeach
+</select>
+
         </div>
         <input type="submit" value="Salvar">
     </form>
+</x-app-layout>

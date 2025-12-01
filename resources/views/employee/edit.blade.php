@@ -1,3 +1,4 @@
+<x-app-layout>
 <h1>Editar Funcionario</h1>
 
     <form action="{{ route('employee.update', $employee->id) }}" method="POST">
@@ -48,3 +49,4 @@
         </div>
         <input type="submit" value="Salvar">
     </form>
+</x-app-layout>

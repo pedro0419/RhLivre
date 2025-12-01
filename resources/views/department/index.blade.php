@@ -1,4 +1,15 @@
-<h1>Departamentos</h1>
+<x-app-layout>
+<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('derpartment') }}
+        </h2>
+    </x-slot>
+
+    @if (session('success'))
+        <div style="padding: 10px; background: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 15px;">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <table border="1" cellpadding="10">
         <thead>
@@ -29,3 +40,4 @@
     </table>
 
     <button><a href="{{ route('department.create') }}">Cadastrar</a></button>
+</x-app-layout>

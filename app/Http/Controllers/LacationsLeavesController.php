@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class LacationsLeavesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
         $employees = employee::all();
@@ -18,18 +17,14 @@ class LacationsLeavesController extends Controller
         return view('lacationsLeaves.index', compact('employees', 'lacationsLeaves'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $employees = employee::all();
         return view('lacationsLeaves.create', compact('employees'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
 
@@ -53,17 +48,13 @@ class LacationsLeavesController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(LacationsLeaves $lacationsLeaves)
     {
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $lacationsLeave = LacationsLeaves::findOrFail($id);
@@ -71,9 +62,7 @@ class LacationsLeavesController extends Controller
         return view('lacationsLeaves.edit', compact('employees' , 'lacationsLeave'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -96,9 +85,7 @@ class LacationsLeavesController extends Controller
         return redirect()->route('lacations-leaves.index') ->with('success', 'Produto atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         $lacationsLeaves = LacationsLeaves::findOrFail($id);

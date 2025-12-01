@@ -1,3 +1,4 @@
+<x-app-layout>
 <h1>Cadastrar departamentos</h1>
 
     <form action="{{ route('department.store') }}" method="POST">
@@ -10,3 +11,4 @@
 
         <button type="submit">Enviar</button>
     </form>
+</x-app-layout>

@@ -1,3 +1,4 @@
+ <x-app-layout>
  <h1>Cadastrar Usuário</h1>
 
     <form action="{{ route('employee.store') }}" method="POST">
@@ -35,3 +36,4 @@
 
         <button type="submit">Enviar</button>
     </form>
+</x-app-layout>

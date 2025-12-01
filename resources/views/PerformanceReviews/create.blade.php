@@ -1,4 +1,5 @@
-<h1>Cadastro de ferias</h1>
+<x-app-layout>
+<h1>Avaliação</h1>
 
     <form action="{{ route('Performance-Reviews.store') }}" method="POST">
         @csrf
@@ -21,3 +22,4 @@
 
         <button type="submit">Enviar</button>
     </form>
+</x-app-layout>
