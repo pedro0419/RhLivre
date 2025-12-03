@@ -7,23 +7,23 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LacationsLeavesController;
 use App\Http\Controllers\PerformanceReviewsController;
+use App\Http\Controllers\DashboardController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__.'/auth.php';
 
 Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
@@ -60,4 +60,4 @@ Route::get('/Performance-Reviews/{id}/edit', [PerformanceReviewsController::clas
 Route::put('/Performance-Reviews/{id}', [PerformanceReviewsController::class, 'update'])->name('Performance-Reviews.update');
 Route::delete('/Performance-Reviews/{id}', [PerformanceReviewsController::class, 'destroy'])->name('Performance-Reviews.delete');
 
-
+require __DIR__.'/auth.php';

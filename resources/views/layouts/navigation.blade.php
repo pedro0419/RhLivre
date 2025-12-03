@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-evenly h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center w-32 h-auto">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-auto w-32 fill-current text-gray-800" />
                     </a>
                 </div>
 
@@ -17,27 +17,27 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.*')">
                         {{ __('employee') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('position.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('position.index')" :active="request()->routeIs('position.*')">
                         {{ __('position') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('department.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('department.index')" :active="request()->routeIs('department.*')">
                         {{ __('departament') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('lacations-leaves.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('lacations-leaves.index')" :active="request()->routeIs('lacations-leaves.*')">
                         {{ __('vacation_leaves') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('Performance-Reviews.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('Performance-Reviews.index')" :active="request()->routeIs('Performance-Reviews.*')">
                         {{ __('performance_reviews') }}
                     </x-nav-link>
                 </div>
@@ -94,6 +94,21 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.*')">
+                {{ __('Funcionários') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('position.index')" :active="request()->routeIs('position.*')">
+                {{ __('Cargos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('department.index')" :active="request()->routeIs('department.*')">
+                {{ __('Departamentos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('lacations-leaves.index')" :active="request()->routeIs('lacations-leaves.*')">
+                {{ __('Férias e Licenças') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('Performance-Reviews.index')" :active="request()->routeIs('Performance-Reviews.*')">
+                {{ __('Avaliações') }}
             </x-responsive-nav-link>
         </div>
 
